@@ -40,6 +40,7 @@ const config: Config = {
       },
       fontFamily: {
         sans: ["Inter", "Noto Sans JP", "system-ui", "sans-serif"],
+        serif: ["Noto Serif JP", "serif"],
         inter: ["Inter", "sans-serif"],
         noto: ["Noto Sans JP", "sans-serif"],
       },
