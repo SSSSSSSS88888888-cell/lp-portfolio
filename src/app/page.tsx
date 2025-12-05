@@ -1,147 +1,187 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ExternalLink, Code, Store, Briefcase } from "lucide-react";
-import Link from "next/link";
+import { Code, FileCode, Wrench, FormInput, Github, Twitter } from "lucide-react";
+import Hero from "@/components/portfolio/Hero";
+import Skills from "@/components/portfolio/Skills";
+import WorkCard from "@/components/portfolio/WorkCard";
 
-const portfolioItems = [
+const works = [
   {
-    title: "SaaS LP",
-    description: "SaaSプロダクト向けのモダンなランディングページ",
+    title: "SaaS LP - タスク管理ツール",
+    category: "SaaS / Webサービス",
+    image: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&q=80",
     href: "/saas",
-    icon: Code,
-    gradient: "from-blue-500 to-cyan-500",
-    features: ["ヒーローセクション", "機能紹介", "料金プラン", "FAQ"],
+    tags: ["Next.js", "Framer Motion", "Tailwind CSS"],
   },
   {
-    title: "Salon LP",
-    description: "美容院・サロン向けのエレガントなランディングページ",
+    title: "美容院LP - Hair Salon",
+    category: "店舗 / 美容",
+    image: "https://images.unsplash.com/photo-1560066984-138dadb4c035?w=600&q=80",
     href: "/salon",
-    icon: Store,
-    gradient: "from-pink-500 to-rose-500",
-    features: ["ビジュアル重視", "メニュー紹介", "スタッフ紹介", "予約導線"],
+    tags: ["Next.js", "アニメーション", "レスポンシブ"],
   },
   {
-    title: "Consulting LP",
-    description: "BtoB・コンサルティング向けの信頼感のあるランディングページ",
+    title: "BtoB LP - コンサルティング",
+    category: "BtoB / 企業向け",
+    image: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&q=80",
     href: "/consulting",
-    icon: Briefcase,
-    gradient: "from-slate-600 to-slate-800",
-    features: ["実績紹介", "サービス詳細", "お問い合わせ", "事例紹介"],
+    tags: ["Next.js", "フォーム実装", "CTA最適化"],
+  },
+];
+
+const services = [
+  {
+    icon: Code,
+    title: "LPコーディング",
+    description: "デザインカンプからの正確なコーディング",
+  },
+  {
+    icon: FileCode,
+    title: "デザイン → コーディング",
+    description: "デザインから一貫した制作が可能",
+  },
+  {
+    icon: Wrench,
+    title: "既存LPの改修・高速化",
+    description: "パフォーマンス改善とモダン化",
+  },
+  {
+    icon: FormInput,
+    title: "フォーム実装",
+    description: "お問い合わせ・予約フォームの構築",
   },
 ];
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
-      {/* Hero Section */}
-      <section className="relative py-20 px-4 overflow-hidden">
-        <div className="absolute inset-0 bg-grid-pattern opacity-5" />
-        <div className="max-w-6xl mx-auto text-center relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
-              LP Portfolio
-            </h1>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto mb-8">
-              Next.js 14 + Tailwind CSS + Framer Motion で作成した
-              <br />
-              ランディングページのポートフォリオ
-            </p>
-          </motion.div>
+    <main className="min-h-screen bg-slate-900">
+      {/* ヒーローセクション */}
+      <Hero />
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="flex flex-wrap justify-center gap-4 text-sm text-gray-500"
-          >
-            <span className="px-3 py-1 bg-white rounded-full shadow-sm">
-              Next.js 14
-            </span>
-            <span className="px-3 py-1 bg-white rounded-full shadow-sm">
-              TypeScript
-            </span>
-            <span className="px-3 py-1 bg-white rounded-full shadow-sm">
-              Tailwind CSS
-            </span>
-            <span className="px-3 py-1 bg-white rounded-full shadow-sm">
-              Framer Motion
-            </span>
-          </motion.div>
-        </div>
-      </section>
+      {/* 強みセクション */}
+      <Skills />
 
-      {/* Portfolio Grid */}
-      <section className="py-20 px-4">
-        <div className="max-w-6xl mx-auto">
-          <motion.h2
+      {/* 作品一覧セクション */}
+      <section className="py-24 bg-slate-900">
+        <div className="max-w-6xl mx-auto px-4">
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="text-3xl font-bold text-center text-gray-900 mb-12"
+            className="text-center mb-16"
           >
-            LPサンプル一覧
-          </motion.h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+              <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+                Works
+              </span>
+            </h2>
+            <p className="text-slate-400">制作実績</p>
+          </motion.div>
 
           <div className="grid md:grid-cols-3 gap-8">
-            {portfolioItems.map((item, index) => (
+            {works.map((work, index) => (
+              <WorkCard
+                key={work.href}
+                {...work}
+                delay={index * 0.1}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 対応可能な業務 */}
+      <section className="py-24 bg-slate-800/30">
+        <div className="max-w-6xl mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+              <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+                Services
+              </span>
+            </h2>
+            <p className="text-slate-400">対応可能な業務</p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {services.map((service, index) => (
               <motion.div
-                key={item.href}
-                initial={{ opacity: 0, y: 30 }}
+                key={service.title}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="p-6 rounded-xl bg-slate-900/50 border border-slate-700/50 hover:border-blue-500/30 transition-colors"
               >
-                <Link href={item.href} className="block group">
-                  <div className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
-                    {/* Card Header */}
-                    <div
-                      className={`bg-gradient-to-r ${item.gradient} p-8 text-white`}
-                    >
-                      <item.icon className="w-12 h-12 mb-4" />
-                      <h3 className="text-2xl font-bold mb-2">{item.title}</h3>
-                      <p className="text-white/80 text-sm">{item.description}</p>
-                    </div>
-
-                    {/* Card Body */}
-                    <div className="p-6">
-                      <h4 className="text-sm font-medium text-gray-500 mb-3">
-                        主な機能
-                      </h4>
-                      <ul className="space-y-2">
-                        {item.features.map((feature) => (
-                          <li
-                            key={feature}
-                            className="flex items-center text-gray-600"
-                          >
-                            <span className="w-1.5 h-1.5 bg-primary rounded-full mr-2" />
-                            {feature}
-                          </li>
-                        ))}
-                      </ul>
-
-                      <div className="mt-6 flex items-center text-primary font-medium group-hover:gap-2 transition-all">
-                        <span>詳しく見る</span>
-                        <ExternalLink className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
-                      </div>
-                    </div>
-                  </div>
-                </Link>
+                <div className="w-12 h-12 rounded-xl bg-blue-500/10 flex items-center justify-center mb-4">
+                  <service.icon className="w-6 h-6 text-blue-400" />
+                </div>
+                <h3 className="text-lg font-bold text-white mb-2">
+                  {service.title}
+                </h3>
+                <p className="text-sm text-slate-400">
+                  {service.description}
+                </p>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="py-8 border-t border-gray-100">
-        <div className="max-w-6xl mx-auto px-4 text-center text-gray-500 text-sm">
-          <p>Built with Next.js 14, Tailwind CSS, and Framer Motion</p>
+      {/* フッター */}
+      <footer className="py-16 bg-slate-900 border-t border-slate-800">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="flex flex-col items-center">
+            {/* ソーシャルリンク */}
+            <div className="flex gap-4 mb-8">
+              <a
+                href="https://github.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-12 h-12 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:bg-slate-700 transition-colors"
+              >
+                <Github className="w-5 h-5" />
+              </a>
+              <a
+                href="https://twitter.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-12 h-12 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:bg-slate-700 transition-colors"
+              >
+                <Twitter className="w-5 h-5" />
+              </a>
+            </div>
+
+            {/* お仕事依頼 */}
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-center mb-8"
+            >
+              <p className="text-slate-400 mb-4">
+                お仕事のご依頼はクラウドワークスから
+              </p>
+              <a
+                href="https://crowdworks.jp"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-500 to-cyan-500 text-white font-medium rounded-full hover:opacity-90 transition-opacity"
+              >
+                クラウドワークスで依頼する
+              </a>
+            </motion.div>
+
+            {/* コピーライト */}
+            <p className="text-slate-500 text-sm">
+              Built with Next.js, Tailwind CSS, and Framer Motion
+            </p>
+          </div>
         </div>
       </footer>
     </main>
