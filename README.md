@@ -1,36 +1,134 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# LP Portfolio
 
-## Getting Started
+ランディングページ制作のポートフォリオサイトです。Next.js 14 (App Router)、Tailwind CSS、Framer Motionを使用して構築しています。
 
-First, run the development server:
+## デモ
+
+各LPサンプルは以下のURLでアクセスできます：
+
+- **トップページ（ポートフォリオ一覧）**: `/`
+- **SaaS LP（WriteAI）**: `/saas`
+- **美容院LP（hair salon BLOOM）**: `/salon`
+- **コンサルティングLP（SHIFT Partners）**: `/consulting`
+
+## 使用技術
+
+| カテゴリ | 技術 |
+|---------|------|
+| フレームワーク | Next.js 14 (App Router) |
+| 言語 | TypeScript |
+| スタイリング | Tailwind CSS |
+| アニメーション | Framer Motion |
+| アイコン | Lucide React |
+| フォント | Inter, Noto Sans JP, Noto Serif JP |
+| 画像最適化 | next/image |
+
+## 各LPの説明
+
+### 1. WriteAI（SaaS LP）
+架空のAIライティングツールのランディングページ。
+- **テーマ**: パープル〜ブルーのグラデーション
+- **特徴**: タイプライターアニメーション、カウントアップ統計、ダッシュボードモックアップ
+- **セクション**: ヒーロー、課題提起、解決策、機能紹介、導入実績、料金プラン、FAQ、CTA
+
+### 2. hair salon BLOOM（美容院LP）
+大人の女性向けプライベートサロンのランディングページ。
+- **テーマ**: ベージュ・ゴールドのエレガントなデザイン
+- **特徴**: 縦書きテキスト、パララックス効果、セリフ体フォント
+- **セクション**: ヒーロー、コンセプト、ターゲット、メニュー、スタイリスト、サロン情報、予約
+
+### 3. SHIFT Partners（コンサルティングLP）
+中小企業向けDXコンサルティング会社のランディングページ。
+- **テーマ**: ダークネイビーのビジネステーマ
+- **特徴**: 統計カウントアップ、タイムラインプロセス、比較表
+- **セクション**: ヒーロー、課題、サービス、プロセス、導入事例、選ばれる理由、FAQ、お問い合わせ
+
+## ディレクトリ構成
+
+```
+src/
+├── app/
+│   ├── layout.tsx          # ルートレイアウト
+│   ├── page.tsx            # トップページ（ポートフォリオ一覧）
+│   ├── globals.css         # グローバルスタイル
+│   ├── saas/
+│   │   ├── layout.tsx      # SaaS LP メタデータ
+│   │   └── page.tsx        # SaaS LP ページ
+│   ├── salon/
+│   │   ├── layout.tsx      # 美容院LP メタデータ
+│   │   └── page.tsx        # 美容院LP ページ
+│   └── consulting/
+│       └── page.tsx        # コンサルティングLP ページ
+├── components/
+│   ├── common/             # 共通コンポーネント
+│   │   ├── ScrollAnimation.tsx
+│   │   ├── CTAButton.tsx
+│   │   ├── SectionTitle.tsx
+│   │   ├── FAQ.tsx
+│   │   ├── Testimonial.tsx
+│   │   └── PricingCard.tsx
+│   ├── portfolio/          # ポートフォリオトップ用
+│   ├── saas/               # SaaS LP用
+│   ├── salon/              # 美容院LP用
+│   └── consulting/         # コンサルティングLP用
+└── lib/
+    └── utils.ts            # ユーティリティ関数
+```
+
+## ローカル起動方法
+
+### 必要要件
+
+- Node.js 18.17以上
+- npm または yarn
+
+### インストール
+
+```bash
+# リポジトリをクローン
+git clone <repository-url>
+cd lp-portfolio
+
+# 依存パッケージをインストール
+npm install
+```
+
+### 開発サーバーの起動
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+[http://localhost:3000](http://localhost:3000) でアクセスできます。
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### プロダクションビルド
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+npm start
+```
 
-## Learn More
+## 対応ブラウザ
 
-To learn more about Next.js, take a look at the following resources:
+- Chrome (最新)
+- Firefox (最新)
+- Safari (最新)
+- Edge (最新)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## アクセシビリティ対応
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- `prefers-reduced-motion` に対応（アニメーション軽減）
+- フォーカス状態の可視化
+- 適切なalt属性の設定
+- 十分なカラーコントラスト
+- タップターゲットサイズの確保（44px以上）
 
-## Deploy on Vercel
+## 注意事項
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- 本サイトの画像はUnsplashから取得しています
+- OGP画像（`/public/og-image.svg`）は本番環境では PNG に変換してください
+- これはポートフォリオ用のデモサイトです。実際のサービスではありません
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## ライセンス
+
+MIT

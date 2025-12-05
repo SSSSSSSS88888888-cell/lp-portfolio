@@ -9,8 +9,42 @@ import "@fontsource/noto-sans-jp/700.css";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "LP Portfolio",
-  description: "ランディングページのポートフォリオサイト",
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL || "https://lp-portfolio.vercel.app"
+  ),
+  title: {
+    default: "LP Portfolio - ランディングページ制作実績",
+    template: "%s | LP Portfolio",
+  },
+  description:
+    "Next.js、Tailwind CSS、Framer Motionを使用したランディングページのポートフォリオサイト。SaaS、美容院、コンサルティングなど様々な業種のLP制作実績を掲載。",
+  keywords: ["LP制作", "ランディングページ", "Next.js", "Tailwind CSS", "ポートフォリオ"],
+  authors: [{ name: "LP Portfolio" }],
+  openGraph: {
+    type: "website",
+    locale: "ja_JP",
+    siteName: "LP Portfolio",
+    title: "LP Portfolio - ランディングページ制作実績",
+    description:
+      "Next.js、Tailwind CSS、Framer Motionを使用したLP制作ポートフォリオ",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "LP Portfolio",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "LP Portfolio - ランディングページ制作実績",
+    description:
+      "Next.js、Tailwind CSS、Framer Motionを使用したLP制作ポートフォリオ",
+  },
+  icons: {
+    icon: "/favicon.svg",
+  },
 };
 
 export default function RootLayout({

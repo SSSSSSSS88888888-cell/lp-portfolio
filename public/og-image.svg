@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f172a"/>
+      <stop offset="100%" style="stop-color:#1e293b"/>
+    </linearGradient>
+    <linearGradient id="text" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#3b82f6"/>
+      <stop offset="100%" style="stop-color:#06b6d4"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <text x="600" y="280" font-family="Arial, sans-serif" font-size="80" font-weight="bold" fill="url(#text)" text-anchor="middle">LP Portfolio</text>
+  <text x="600" y="380" font-family="Arial, sans-serif" font-size="32" fill="#94a3b8" text-anchor="middle">Next.js / Tailwind CSS / Framer Motion</text>
+  <text x="600" y="450" font-family="Arial, sans-serif" font-size="28" fill="#64748b" text-anchor="middle">SaaS・美容院・コンサルティング LP制作実績</text>
+</svg>

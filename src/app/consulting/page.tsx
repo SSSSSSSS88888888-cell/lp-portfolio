@@ -1,3 +1,6 @@
+import { Metadata } from "next";
+import Link from "next/link";
+import { ArrowLeft } from "lucide-react";
 import HeroConsulting from "@/components/consulting/HeroConsulting";
 import Challenges from "@/components/consulting/Challenges";
 import Services from "@/components/consulting/Services";
@@ -6,6 +9,18 @@ import CaseStudies from "@/components/consulting/CaseStudies";
 import WhyUs from "@/components/consulting/WhyUs";
 import ContactForm from "@/components/consulting/ContactForm";
 import FAQ from "@/components/common/FAQ";
+
+export const metadata: Metadata = {
+  title: "SHIFT Partners - 中小企業DX支援コンサルティング | LP Portfolio",
+  description:
+    "中小企業のDX推進を伴走型で支援するコンサルティング会社。業務効率化からIT戦略立案まで、費用対効果を重視したソリューションを提供。",
+  openGraph: {
+    title: "SHIFT Partners - 中小企業DX支援コンサルティング",
+    description:
+      "中小企業のDX推進を伴走型で支援するコンサルティング会社。業務効率化からIT戦略立案まで。",
+    type: "website",
+  },
+};
 
 const faqItems = [
   {
@@ -43,6 +58,28 @@ const faqItems = [
 export default function ConsultingPage() {
   return (
     <main>
+      {/* ナビゲーション */}
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-[#1E293B]/95 backdrop-blur-md border-b border-slate-700/50">
+        <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
+          <Link
+            href="/"
+            className="flex items-center gap-2 text-gray-300 hover:text-white transition-colors"
+          >
+            <ArrowLeft className="w-4 h-4" />
+            <span className="text-sm">ポートフォリオに戻る</span>
+          </Link>
+          <div className="flex items-center gap-2">
+            <span className="text-xl font-bold text-white">SHIFT Partners</span>
+          </div>
+          <a
+            href="#contact"
+            className="text-sm px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
+          >
+            無料相談
+          </a>
+        </div>
+      </nav>
+
       <HeroConsulting />
       <Challenges />
       <Services />
@@ -90,6 +127,9 @@ export default function ConsultingPage() {
           </div>
           <div className="mt-8 pt-8 border-t border-gray-800 text-center text-sm">
             <p>© 2024 SHIFT Partners Inc. All rights reserved.</p>
+            <p className="mt-2 text-xs text-gray-500">
+              ※ これはポートフォリオ用のデモサイトです
+            </p>
           </div>
         </div>
       </footer>
