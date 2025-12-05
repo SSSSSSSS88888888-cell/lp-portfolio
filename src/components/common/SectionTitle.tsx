@@ -1,50 +1,37 @@
 "use client";
 
-import ScrollAnimation from "./ScrollAnimation";
 import { cn } from "@/lib/utils";
+import ScrollAnimation from "./ScrollAnimation";
 
 interface SectionTitleProps {
   title: string;
   subtitle?: string;
-  description?: string;
-  align?: "left" | "center" | "right";
-  className?: string;
+  align?: "left" | "center";
 }
 
 export default function SectionTitle({
   title,
   subtitle,
-  description,
   align = "center",
-  className = "",
 }: SectionTitleProps) {
-  const alignClasses = {
-    left: "text-left",
-    center: "text-center",
-    right: "text-right",
-  };
-
   return (
-    <div className={cn("mb-12", alignClasses[align], className)}>
+    <ScrollAnimation
+      className={cn("mb-12", align === "center" ? "text-center" : "text-left")}
+    >
       {subtitle && (
-        <ScrollAnimation delay={0}>
-          <span className="inline-block text-primary font-medium text-sm tracking-wider uppercase mb-2">
-            {subtitle}
-          </span>
-        </ScrollAnimation>
+        <span className="inline-block text-primary font-medium text-sm tracking-wider uppercase mb-3">
+          {subtitle}
+        </span>
       )}
-      <ScrollAnimation delay={0.1}>
-        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
-          {title}
-        </h2>
-      </ScrollAnimation>
-      {description && (
-        <ScrollAnimation delay={0.2}>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            {description}
-          </p>
-        </ScrollAnimation>
-      )}
-    </div>
+      <h2 className="text-3xl md:text-4xl font-bold text-gray-900 relative inline-block">
+        {title}
+        <span
+          className={cn(
+            "absolute -bottom-2 left-0 h-1 bg-primary rounded-full",
+            align === "center" ? "w-1/2 left-1/4" : "w-16"
+          )}
+        />
+      </h2>
+    </ScrollAnimation>
   );
 }
